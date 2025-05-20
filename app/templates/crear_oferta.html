@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Ofertas Laborales{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6 justify-content-center">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Crear Oferta Laboral</h3>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título</label>
+              <input type="text" class="form-control" id="titulo" name="titulo" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="ciudad" class="form-label">Ciudad</label>
+              <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="objetivo" class="form-label">Objetivo</label>
+              <textarea class="form-control" id="objetivo" name="objetivo" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="requisitos" class="form-label">Requisitos</label>
+              <textarea class="form-control" id="requisitos" name="requisitos" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="habilidades" class="form-label">Habilidades</label>
+              <textarea class="form-control" id="habilidades" name="habilidades" rows="2" placeholder="Separadas por comas" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="correo_contacto" class="form-label">Correo de contacto</label>
+              <input type="email" class="form-control" id="correo_contacto" name="correo_contacto" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="asunto_correo" class="form-label">Asunto del correo</label>
+              <input type="text" class="form-control" id="asunto_correo" name="asunto_correo" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-danger" role="button"  href="{{ url_for('ofertas.listar_ofertas') }} "> Cancelar </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

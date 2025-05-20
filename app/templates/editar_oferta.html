@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Oferta Laboral{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="mb-4 text-center">Editar Oferta Laboral</h2>
+      <form method="post">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título</label>
+          <input type="text" class="form-control" id="titulo" name="titulo" value="{{ oferta.titulo }}" required>
+        </div>
+        <div class="mb-3">
+          <label for="ciudad" class="form-label">Ciudad</label>
+          <input type="text" class="form-control" id="ciudad" name="ciudad" value="{{ oferta.ciudad }}" required>
+        </div>
+        <div class="mb-3">
+          <label for="objetivo" class="form-label">Objetivo</label>
+          <textarea class="form-control" id="objetivo" name="objetivo" rows="3" required>{{ oferta.objetivo }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="requisitos" class="form-label">Requisitos</label>
+          <textarea class="form-control" id="requisitos" name="requisitos" rows="3" required>{{ oferta.requisitos }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="habilidades" class="form-label">Habilidades (separadas por comas)</label>
+          <textarea class="form-control" id="habilidades" name="habilidades" rows="3" required>{{ oferta.habilidades }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="correo_contacto" class="form-label">Correo de contacto</label>
+          <input type="email" class="form-control" id="correo_contacto" name="correo_contacto" value="{{ oferta.correo_contacto }}" required>
+        </div>
+        <div class="mb-3">
+          <label for="asunto_correo" class="form-label">Asunto sugerido</label>
+          <input type="text" class="form-control" id="asunto_correo" name="asunto_correo" value="{{ oferta.asunto_correo }}" required>
+        </div>
+        <div class="d-flex justify-content-between">
+          <a href="{{ url_for('ofertas.listar_ofertas') }}" class="btn btn-secondary">Cancelar</a>
+          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

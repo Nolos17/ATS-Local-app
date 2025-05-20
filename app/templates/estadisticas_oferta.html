@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Estadísticas de la Oferta{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Estadísticas de la Oferta</h2>
+
+  <p><strong>Título:</strong> {{ oferta.titulo }}</p>
+  <p><strong>Asunto usado en Gmail:</strong> "{{ asunto }}"</p>
+  <p><strong>Correos encontrados en Gmail con ese asunto:</strong> {{ cantidad_correos }}</p>
+
+  <a href="{{ url_for('ofertas.listar_ofertas') }}" class="btn btn-secondary mt-3">Volver</a>
+  <a href="{{ url_for('ofertas.generar_informe', id=oferta.id) }}" class="btn btn-primary">
+  Generar informe de candidatos
+</a>
+
+</div>
+{% endblock %}

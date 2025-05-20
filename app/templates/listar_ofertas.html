@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Ofertas Laborales{% endblock %}
+
+{% block content %}
+<div class="container mb-4">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h1 class="mb-0">Ofertas Laborales</h1>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <form class="d-flex me-2" method="get" action="{{ url_for('ofertas.listar_ofertas') }}">
+  <input class="form-control me-2" type="search" name="keyword" placeholder="Buscar ofertas..." value="{{ request.args.get('keyword', '') }}">
+  <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+</form>
+      <a class="btn btn-primary" href="{{ url_for('ofertas.crear_oferta') }}">Crear Oferta</a>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for oferta in ofertas %}
+  <div class="col">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ oferta.titulo }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ oferta.ciudad }}</h6>
+        <p class="card-text"><strong>Objetivo:</strong> {{ oferta.objetivo }}</p>
+        <p class="card-text"><strong>Requisitos:</strong> {{ oferta.requisitos }}</p>
+        <p class="card-text"><strong>Habilidades:</strong> {{ oferta.habilidades }}</p>
+        <p class="card-text"><strong>Contacto:</strong> {{ oferta.correo_contacto }}<br>
+          <strong>Asunto:</strong> {{ oferta.asunto_correo }}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <form action="{{ url_for('ofertas.eliminar_oferta', id=oferta.id) }}" method="post" class="d-inline">
+          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+        </form>
+        <a class="btn btn-warning btn-sm" href="{{ url_for('ofertas.editar_oferta', id=oferta.id) }}">Editar</a>
+        <a class="btn btn-info btn-sm" href="{{ url_for('ofertas.ver_estadisticas', id=oferta.id) }}">Ver Estadísticas</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

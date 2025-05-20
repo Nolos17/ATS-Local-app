@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de la Oferta{% endblock %}
+
+{% block content %}
+<h2>Informe de Evaluación - {{ oferta.titulo }}</h2>
+<p>Requerimientos - {{ oferta.objetivo }} </p>
+<p>Requerimientos - {{ oferta.requisitos }} </p>
+<p>Requerimientos - {{ oferta.habilidades }} </p>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Calificación</th>
+            <th>Apto</th>
+            <th>Resumen IA</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for eval in evaluaciones %}
+        <tr {% if eval.calificacion >= 8 %} style="background-color: #dff0d8;" {% endif %}>
+            <td>{{ eval.nombre }}</td>
+            <td>{{ eval.calificacion }}</td>
+            <td>
+                {% if "apto" in eval.evaluacion.lower() or eval.calificacion >= 7 %}
+                    ✅ Sí
+                {% else %}
+                    ❌ No
+                {% endif %}
+            </td>
+            <td>{{ eval.evaluacion }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<h3>Mejores candidatos</h3>
+<ol>
+    {% for top in mejores %}
+    <li><strong>{{ top.nombre }}</strong> - Calificación: {{ top.calificacion }}<br>
+    {{ top.evaluacion }}</li>
+    {% endfor %}
+</ol>
+{% endblock %}
